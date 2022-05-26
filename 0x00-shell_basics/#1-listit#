@@ -1,6 +1,0 @@
-#!/bin/bash
-pwd
-
-C-x C-s
-type 1-listit
-C-x C-c
