@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f -nmae "*.js" | xargs -0 rm -rf
+find . -type d -not -name "*.jsÂ" -delete
