@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-# displays Holberton School 10 times.
+# This script prints "bad luck" 4th iteration, "good luck" on the 8th iteration, and "Best School" for other iterations
+n=1
 
-COUNTER=1
-while [ $COUNTER -lt 11 ]
+while [ $n -le 10 ]
 do
-    if [ $COUNTER = 4 ]
+    if [ $n -eq 4 ]
     then
         echo "bad luck"
-    elif [ $COUNTER = 8 ]
+    elif [ $n -eq 8 ]
     then
         echo "good luck"
     else
-        echo "Holberton School"
+        echo "Best School"
     fi
-    let COUNTER+=1
+    n=$(( n + 1 ))
 done

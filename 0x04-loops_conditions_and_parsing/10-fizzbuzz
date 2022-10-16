@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
-# displays Holberton School 10 times.
+# This script is used for FizzBuzz game
+n=1
 
-COUNTER=1
-while [ $COUNTER -lt 101 ]
+while [ $n -le 100 ]
 do
-    if [ $((COUNTER%15)) = 0 ]
+    if [ $(( n % 3 )) -eq 0 -a $(( n % 5 )) -eq 0 ]
     then
         echo "FizzBuzz"
-    elif [ $((COUNTER%3)) = 0 ]
+    elif [ $(( n % 3 )) -eq 0 ]
     then
         echo "Fizz"
-    elif [ $((COUNTER%5)) = 0 ]
+    elif [ $(( n % 5 )) -eq 0 ]
     then
         echo "Buzz"
     else
-        echo "$COUNTER"
+        echo $n
     fi
-    let COUNTER+=1
+    n=$(( n + 1 ))
 done
