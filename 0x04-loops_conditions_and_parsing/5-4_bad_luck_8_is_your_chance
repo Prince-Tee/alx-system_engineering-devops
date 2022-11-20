@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
-# This script prints "bad luck" 4th iteration, "good luck" on the 8th iteration, and "Best School" for other iterations
-n=1
+# This script is displaying "Best School" 10 times using while loop,
+# displays bad luck for the 4th loop iteration
+# displays good luck for the 8th loop iteration
+# displays Best School for the other iterations
 
-while [ $n -le 10 ]
+x=0
+
+while [ $x -lt 10 ]
 do
-    if [ $n -eq 4 ]
-    then
-        echo "bad luck"
-    elif [ $n -eq 8 ]
-    then
-        echo "good luck"
-    else
-        echo "Best School"
-    fi
-    n=$(( n + 1 ))
+  if [[ $x -eq 3 ]]
+  then
+    echo "bad luck"
+  elif [[ $x -eq 7 ]]
+  then
+    echo "good luck"
+  else
+  echo "Best School"
+  fi
+  (( x++ ))
 done
