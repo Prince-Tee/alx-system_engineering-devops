@@ -1,37 +1,20 @@
-# Install Nginx web server with Puppet
-include stdlib
+#setup nginx
 
-$link = 'https://www.youtube.com/watch?v=QH2-TGUlwu4'
-$content = "\trewrite ^/redirect_me/$ ${link} permanent;"
-
-exec { 'update packages':
-  command => '/usr/bin/apt-get update'
+package {
+    'nginx':
+    ensure => installed,
 }
 
-exec { 'restart nginx':
-  command => '/usr/sbin/service nginx restart',
-  require => Package['nginx']
+file {'/var/www/html/index.nginx-debian.html':
+    content => 'Hello World!',
 }
 
-package { 'nginx':
-  ensure  => 'installed',
-  require => Exec['update packages']
+file_line {'configure redirection':
+    path  =>  '/etc/nginx/sites-available/default',
+    after =>  'server_name _;',
+    line  =>  "\n\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/dQw4w9WgXcQ;\n\t}\n",
 }
 
-file { '/var/www/html/index.html':
-  ensure  => 'present',
-  content => 'Hello World!',
-  mode    => '0644',
-  owner   => 'root',
-  group   => 'root'
-}
-
-file_line { 'Set 301 redirection':
-  ensure   => 'present',
-  after    => 'server_name\ _;',
-  path     => '/etc/nginx/sites-available/default',
-  multiple => true,
-  line     => $content,
-  notify   => Exec['restart nginx'],
-  require  => File['/var/www/html/index.html']
+service {'nginx':
+    ensure => running,
 }
